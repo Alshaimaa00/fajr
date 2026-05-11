@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Fajr</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: "Arial";
+    background-color: #0b0c2a;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    color: #d6b36a;
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #d6b36a;
+    margin-bottom: 40px;
+}
+
+.input-box {
+    width: 500px;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+    text-align: center;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 30px;
+    border-radius: 25px;
+    border: none;
+    background: linear-gradient(to right, #d6b36a, #b8964f);
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+}
+
+.result {
+    margin-top: 30px;
+    font-size: 20px;
+    color: #d6b36a;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Fajr</h1>
+    <div class="subtitle">Verify the accuracy of Quranic verses shared online</div>
+
+    <input id="ayah" class="input-box" placeholder="أدخل نص الآية القرآنية">
+    <br>
+    <input id="claim" class="input-box" placeholder="أدخل الاستدلال أو التفسير">
+
+    <br>
+    <button type="button" onclick="verify()">تحقق من الاستدلال</button>
+
+    <div id="result" class="result"></div>
+
+</div>
+
+<script>
+async function verify() {
+    let ayah = document.getElementById("ayah").value.trim();
+    let claim = document.getElementById("claim").value.trim();
+
+    let response = await fetch("/predict", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            ayah: ayah,
+            claim: claim
+        })
+    });
+
+    let data = await response.json();
+
+    document.getElementById("result").innerHTML = data.result;
+}
+</script>
+
+</body>
+</html>
