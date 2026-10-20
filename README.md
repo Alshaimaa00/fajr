@@ -73,26 +73,6 @@ fajr
 
 ---
 
-## ▶️ Getting Started
-
-1. Install the libraries:
-   ```bash
-   pip install transformers torch flask pandas scikit-learn datasets lime
-   ```
-2. Prepare the data:
-   ```bash
-   python DataCleaning.py
-   ```
-3. Train the model (saved to `./my_model`):
-   ```bash
-   python main.py
-   ```
-4. Launch the app and open **http://localhost:5006**:
-   ```bash
-   python app.py
-   ```
-
----
 
 ## 👥 Team
 
@@ -103,4 +83,5 @@ fajr
 | Dr. Wafa Alrajhi | Supervisor |
 
 ---
+
 
